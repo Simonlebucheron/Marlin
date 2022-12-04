@@ -898,7 +898,7 @@
 
   // Safety: The probe needs time to recognize the command.
   //         Minimum command delay (ms). Enable and increase if needed.
-  //#define BLTOUCH_DELAY 500
+  #define BLTOUCH_DELAY 500
 
   /**
    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
@@ -942,7 +942,7 @@
    *
    * Set the default state here, change with 'M401 S' or UI, use M500 to save, M502 to reset.
    */
-  //#define BLTOUCH_HS_MODE true
+  #define BLTOUCH_HS_MODE true
 
   // Safety: Enable voltage mode settings in the LCD menu.
   //#define BLTOUCH_LCD_VOLTAGE_MENU
@@ -1327,7 +1327,7 @@
 //#define LCD_BACKLIGHT_TIMEOUT 30 // (s) Timeout before turning off the backlight
 
 #if HAS_BED_PROBE && EITHER(HAS_MARLINUI_MENU, HAS_TFT_LVGL_UI)
-  //#define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+  #define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
   #if ENABLED(PROBE_OFFSET_WIZARD)
     /**
      * Enable to init the Probe Z-Offset when starting the Wizard.
@@ -1667,11 +1667,11 @@
   //#define CONFIGURATION_EMBEDDING
 
   // Add an optimized binary file transfer mode, initiated with 'M28 B1'
-  //#define BINARY_FILE_TRANSFER
+  #define BINARY_FILE_TRANSFER
 
   #if ENABLED(BINARY_FILE_TRANSFER)
     // Include extra facilities (e.g., 'M20 F') supporting firmware upload via BINARY_FILE_TRANSFER
-    //#define CUSTOM_FIRMWARE_UPLOAD
+    #define CUSTOM_FIRMWARE_UPLOAD
   #endif
 
   /**
@@ -1683,7 +1683,7 @@
    *
    * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
    */
-  //#define SDCARD_CONNECTION LCD
+  #define SDCARD_CONNECTION ONBOARD
 
   // Enable if SD detect is rendered useless (e.g., by using an SD extender)
   //#define NO_SD_DETECT
@@ -2035,7 +2035,7 @@
 
   //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
-  //#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
+  #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
     //#define BABYSTEP_HOTEND_Z_OFFSET      // For multiple hotends, babystep relative Z offsets
     //#define BABYSTEP_ZPROBE_GFX_OVERLAY   // Enable graphical overlay on Z-offset editor
@@ -2225,7 +2225,7 @@
 //
 // G60/G61 Position Save and Return
 //
-//#define SAVED_POSITIONS 1         // Each saved position slot costs 12 bytes
+#define SAVED_POSITIONS 1         // Each saved position slot costs 12 bytes
 
 //
 // G2/G3 Arc Support
@@ -2265,7 +2265,7 @@
  * and optionally G38.4 and G38.5 (probe away from target).
  * Set MULTIPLE_PROBING for G38 to probe more than once.
  */
-//#define G38_PROBE_TARGET
+#define G38_PROBE_TARGET
 #if ENABLED(G38_PROBE_TARGET)
   //#define G38_PROBE_AWAY        // Include G38.4 and G38.5 to probe away from target
   #define G38_MINIMUM_MOVE 0.0275 // (mm) Minimum distance that will produce a move.
@@ -2582,23 +2582,23 @@
  *
  * Enable PARK_HEAD_ON_PAUSE to add the G-code M125 Pause and Park.
  */
-//#define ADVANCED_PAUSE_FEATURE
+#define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
                                                   // This short retract is done immediately, before parking the nozzle.
-  #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     10  // (mm/s) Unload filament feedrate. This can be pretty fast.
+  #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     100  // (mm/s) Unload filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_UNLOAD_ACCEL        25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_UNLOAD_LENGTH      100  // (mm) The length of filament for a complete unload.
+  #define FILAMENT_CHANGE_UNLOAD_LENGTH      420  // (mm) The length of filament for a complete unload.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
                                                   //   Set to 0 for manual unloading.
-  #define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE   6  // (mm/s) Slow move when starting load.
-  #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH     0  // (mm) Slow length, to allow time to insert material.
+  #define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE   10  // (mm/s) Slow move when starting load.
+  #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH     25  // (mm) Slow length, to allow time to insert material.
                                                   // 0 to disable start loading and skip to fast load only
-  #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE   6  // (mm/s) Load filament feedrate. This can be pretty fast.
+  #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE   40  // (mm/s) Load filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_FAST_LOAD_ACCEL     25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH     0  // (mm) Load length of filament, from extruder gear to nozzle.
+  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH    380  // (mm) Load length of filament, from extruder gear to nozzle.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
   //#define ADVANCED_PAUSE_CONTINUOUS_PURGE       // Purge continuously up to the purge length until interrupted.
@@ -2622,10 +2622,10 @@
   //#define FILAMENT_CHANGE_RESUME_ON_INSERT      // Automatically continue / load filament when runout sensor is triggered again.
   //#define PAUSE_REHEAT_FAST_RESUME              // Reduce number of waits by not prompting again post-timeout before continuing.
 
-  //#define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
+  #define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
   //#define HOME_BEFORE_FILAMENT_CHANGE           // If needed, home before parking for filament change
 
-  //#define FILAMENT_LOAD_UNLOAD_GCODES           // Add M701/M702 Load/Unload G-codes, plus Load/Unload in the LCD Prepare menu.
+  #define FILAMENT_LOAD_UNLOAD_GCODES           // Add M701/M702 Load/Unload G-codes, plus Load/Unload in the LCD Prepare menu.
   //#define FILAMENT_UNLOAD_ALL_EXTRUDERS         // Allow M702 to unload all extruders above a minimum target temp (as set by M302)
 #endif
 
@@ -3817,29 +3817,29 @@
 // @section custom main menu
 
 // Custom Menu: Main Menu
-//#define CUSTOM_MENU_MAIN
+#define CUSTOM_MENU_MAIN
 #if ENABLED(CUSTOM_MENU_MAIN)
   //#define CUSTOM_MENU_MAIN_TITLE "Custom Commands"
   #define CUSTOM_MENU_MAIN_SCRIPT_DONE "M117 User Script Done"
   #define CUSTOM_MENU_MAIN_SCRIPT_AUDIBLE_FEEDBACK
-  //#define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
+  #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Home & UBL Info"
-  #define MAIN_MENU_ITEM_1_GCODE "G28\nG29 W"
+  #define MAIN_MENU_ITEM_1_DESC "Nozzle cleaning"
+  #define MAIN_MENU_ITEM_1_GCODE "M117 Cleaning nozzle\nG12 P2"
   //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
-  #define MAIN_MENU_ITEM_2_DESC "Preheat for " PREHEAT_1_LABEL
-  #define MAIN_MENU_ITEM_2_GCODE "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
-  //#define MAIN_MENU_ITEM_2_CONFIRM
+  #define MAIN_MENU_ITEM_2_DESC "Emergency stop"
+  #define MAIN_MENU_ITEM_2_GCODE "M112\nM117 Emergency stop"
+  #define MAIN_MENU_ITEM_2_CONFIRM
 
-  //#define MAIN_MENU_ITEM_3_DESC "Preheat for " PREHEAT_2_LABEL
-  //#define MAIN_MENU_ITEM_3_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
-  //#define MAIN_MENU_ITEM_3_CONFIRM
+  #define MAIN_MENU_ITEM_3_DESC "Break and continue"
+  #define MAIN_MENU_ITEM_3_GCODE "M108\nM117 Break and continue"
+  #define MAIN_MENU_ITEM_3_CONFIRM
 
-  //#define MAIN_MENU_ITEM_4_DESC "Heat Bed/Home/Level"
-  //#define MAIN_MENU_ITEM_4_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29"
-  //#define MAIN_MENU_ITEM_4_CONFIRM
+  #define MAIN_MENU_ITEM_4_DESC "Maintenance mode"
+  #define MAIN_MENU_ITEM_4_GCODE "G0 X" STRINGIFY(X_MAX_POS) " Y" STRINGIFY(Y_MIN_POS) " Z150 F5000\nM18\nM117 Stepper motors disabled"
+  #define MAIN_MENU_ITEM_4_CONFIRM
 
   //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
   //#define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
@@ -3929,13 +3929,13 @@
  */
 #define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
-  //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
+  #define HOST_PAUSE_M76                // Tell the host to pause in response to M76
   #define HOST_PROMPT_SUPPORT             // Initiate host prompts to get user feedback
   #if ENABLED(HOST_PROMPT_SUPPORT)
-    //#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+    #define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
   #endif
-  //#define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
-  //#define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
+  #define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
+  #define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
 #endif
 
 // @section extras
@@ -4277,10 +4277,10 @@
 #if ENABLED(PRINTCOUNTER)
   #define SERVICE_WARNING_BUZZES  3
   // Activate up to 3 service interval watchdogs
-  //#define SERVICE_NAME_1      "Service S"
-  //#define SERVICE_INTERVAL_1  100 // print hours
-  //#define SERVICE_NAME_2      "Service L"
-  //#define SERVICE_INTERVAL_2  200 // print hours
+  #define SERVICE_NAME_1      "Service Short 100h"
+  #define SERVICE_INTERVAL_1  100 // print hours
+  #define SERVICE_NAME_2      "Service Long 500h"
+  #define SERVICE_INTERVAL_2  500 // print hours
   //#define SERVICE_NAME_3      "Service 3"
   //#define SERVICE_INTERVAL_3    1 // print hours
 #endif
